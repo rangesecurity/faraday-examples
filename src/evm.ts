@@ -15,7 +15,7 @@ import { decode as rlpDecode, encode as rlpEncode } from "@ethersproject/rlp";
  *  1. Computes the signing hash as keccak256(0x02 || RLP([...])).
  *  2. Signs the hash with secp256k1 using the provided private key.
  *  3. Appends canonical signature fields:
- *       • yParity → empty bytes for 0, single 0x01 byte for 1  
+ *       • yParity → empty bytes for 0, single 0x01 byte for 1
  *       • r, s     → stripped of leading zeros (minimal encoding)
  *  4. Re-encodes the list and prefixes 0x02.
  *
@@ -23,7 +23,10 @@ import { decode as rlpDecode, encode as rlpEncode } from "@ethersproject/rlp";
  * @param privateKey  0x-prefixed secp256k1 private key
  * @returns           Fully signed 0x-prefixed EIP-1559 transaction
  */
-export function signUnsignedType2(unsignedTx: `0x${string}`, privateKey: `0x${string}`): `0x${string}` {
+export function signUnsignedType2(
+  unsignedTx: `0x${string}`,
+  privateKey: `0x${string}`,
+): `0x${string}` {
   if (!unsignedTx.startsWith("0x02")) {
     throw new Error("Expected EIP-1559 type-2 unsigned tx (0x02 prefix).");
   }
@@ -37,7 +40,7 @@ export function signUnsignedType2(unsignedTx: `0x${string}`, privateKey: `0x${st
   const yParity = sig.yParity as 0 | 1;
 
   // 3. Decode the unsigned RLP list
-  const list = rlpDecode(("0x" + unsignedTx.slice(4)) as `0x${string}`) as any[];
+  const list = rlpDecode(("0x" + unsignedTx.slice(4)) as `0x${string}`) as (string | Uint8Array)[];
 
   // 4. Canonical encoding rules
   const yRlp = yParity === 0 ? new Uint8Array([]) : new Uint8Array([1]);
