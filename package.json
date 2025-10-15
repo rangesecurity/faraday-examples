@@ -8,12 +8,15 @@
     "dev:health": "tsx src/health.ts",
     "dev:chains": "tsx src/chains.ts",
     "dev:quote": "tsx src/quote.ts",
+    "dev:submit": "tsx src/submit.ts",
     "dev:tokens": "tsx src/tokens.ts",
     "build": "tsc -p tsconfig.json",
     "start:health": "node dist/health.js"
   },
   "dependencies": {
+    "@ethersproject/rlp": "^5.8.0",
     "dotenv": "^16.4.5",
+    "ethers": "^6.15.0",
     "faraday-sdk": "file:../faraday-sdk"
   },
   "devDependencies": {
