@@ -11,10 +11,7 @@ on:
       - ".eslintrc.*"
       - ".prettierrc*"
   push:
-    branches: [main, master]
-    paths:
-      - "**/*.ts"
-      - "**/*.tsx"
+    branches: [main]
 
 jobs:
   lint:
