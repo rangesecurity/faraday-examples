@@ -28,6 +28,7 @@ const params: GetQuoteRequest = {
   try {
     const res = await api.getQuote(params);
     console.dir(res, { depth: null });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     const body = e?.response?.text ? await e.response.text() : e?.message;
     console.error("Quote failed:", body ?? e);

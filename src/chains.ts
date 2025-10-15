@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { Configuration, ChainsApi } from "faraday-sdk"; // generated class
 
-const baseUrl = process.env.FARADAY_BASE_URL || "https://api.faraday.range.org"
+const baseUrl = process.env.FARADAY_BASE_URL || "https://api.faraday.range.org";
 
 /**
  * Create a client for the Chains API
@@ -33,4 +33,3 @@ main().catch((err) => {
   console.error("Unhandled exception:", err);
   process.exit(1);
 });
-

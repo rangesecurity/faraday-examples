@@ -1,0 +1,36 @@
+#!/bin/sh
+
+set -eu
+
+npx_cmd() {
+  if command -v pnpm >/dev/null 2>&1 && [ -f "pnpm-lock.yaml" ]; then
+    pnpm exec "$@"
+  elif command -v yarn >/dev/null 2>&1 && [ -f "yarn.lock" ]; then
+    yarn dlx "$@"
+  else
+    npx --no-install "$@"
+  fi
+}
+
+# Allow switching Prettier behavior:
+#   PRETTIER_MODE=check  (default)  -> verify formatting
+#   PRETTIER_MODE=write  -> auto-format and re-add files
+PRETTIER_MODE="${PRETTIER_MODE:-check}"
+
+echo "running TypeScript typecheck…"
+npx_cmd tsc --noEmit
+
+echo "running ESLint on repository…"
+npx_cmd eslint . --ext .ts,.tsx --max-warnings=0 --no-error-on-unmatched-pattern
+
+echo "running Prettier ($PRETTIER_MODE) on repository…"
+if [ "$PRETTIER_MODE" = "write" ]; then
+  # Auto-fix formatting and re-add changes
+  npx_cmd prettier --write --log-level warn "**/*.{ts,tsx}"
+  git add -A
+else
+  # Just check formatting (non-destructive)
+  npx_cmd prettier --check --log-level warn "**/*.{ts,tsx}"
+fi
+
+exit 0
