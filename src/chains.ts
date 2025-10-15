@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { Configuration, ChainsApi } from "faraday-sdk"; // generated class
+import { Configuration, ChainsApi } from "@rangesecurity/faraday-sdk";
 
 const baseUrl = process.env.FARADAY_BASE_URL || "https://api.faraday.range.org";
 

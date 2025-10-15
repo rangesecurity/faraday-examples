@@ -1,14 +1,15 @@
 import "dotenv/config";
-import { faradayClient } from "faraday-sdk";
-import { TokensApi } from "faraday-sdk"; // generated class
-
+import { TokensApi, Configuration } from "@rangesecurity/faraday-sdk";
 const baseUrl = process.env.FARADAY_BASE_URL || "https://api.faraday.range.org";
-const apiKey = process.env.FARADAY_API_KEY;
+const token = process.env.FARADAY_API_KEY;
 
-/**
- * Create a client for the Tokens API
- */
-const tokensApi = faradayClient(TokensApi, { baseUrl, apiKey });
+const cfg = new Configuration({
+  basePath: baseUrl,
+  accessToken: token,
+  headers: { accept: "application/json" },
+});
+
+const tokensApi = new TokensApi(cfg);
 
 /**
  * Example: Fetch all supported tokens

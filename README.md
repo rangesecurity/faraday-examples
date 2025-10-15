@@ -29,3 +29,14 @@ npm install
   npm run start:tokens
   npm run start:quote
   ```
+
+## Faucet
+
+Sepolia ETH
+https://cloud.google.com/application/web3/faucet/ethereum/sepolia
+
+Solana Devnet SOL
+https://faucet.solana.com/
+
+USDC Faucet
+https://faucet.circle.com/

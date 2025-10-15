@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { Configuration, GetQuoteRequest, TransactionsApi } from "faraday-sdk";
+import { Configuration, GetQuoteRequest, TransactionsApi } from "@rangesecurity/faraday-sdk";
 
 const baseUrl = process.env.FARADAY_BASE_URL;
 const token = process.env.FARADAY_API_KEY;
