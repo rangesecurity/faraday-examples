@@ -13,6 +13,7 @@
     "dev:health": "tsx src/health.ts",
     "dev:chains": "tsx src/chains.ts",
     "dev:quote": "tsx src/quote.ts",
+    "dev:quotes": "tsx src/quotes.ts",
     "dev:submit": "tsx src/submit.ts",
     "dev:tokens": "tsx src/tokens.ts",
     "build": "tsc -p tsconfig.json",
