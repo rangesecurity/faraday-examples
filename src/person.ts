@@ -1,9 +1,5 @@
 import "dotenv/config";
-import {
-  Configuration,
-  PersonsApi,
-  CreatePersonRequest,
-} from "@rangesecurity/faraday-sdk";
+import { Configuration, PersonsApi, CreatePersonRequest } from "@rangesecurity/faraday-sdk";
 
 const baseUrl = process.env.FARADAY_BASE_URL!;
 const token = process.env.FARADAY_API_KEY!;
@@ -60,6 +56,7 @@ const params: CreatePersonRequest = {
   try {
     const res = await api.createPerson(params);
     console.dir(res, { depth: null });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     console.error("Error creating person:");
     const body = e?.response?.data ?? e?.message;
